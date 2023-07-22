@@ -279,7 +279,7 @@ def main():
             
       st.write(' ----------------------------------------------------- Resultado da Otimização -----------------------------------------------------')
       st.write(f'Retorno ótimo: {round(-res.fun)} %')
-      st.write(f'Total de títulos avaliados: {round(len(df))} %')
+      st.write(f'Total de títulos avaliados: {round(len(df))}')
 
 
       df_optm = pd.DataFrame(columns=['idx','titulo_perc'])
