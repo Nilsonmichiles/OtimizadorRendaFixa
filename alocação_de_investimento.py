@@ -278,14 +278,25 @@ def main():
       res = optimize_portfolio_highs(df, restricao_indiv, restricao_duration, restricao_risk, restricao_total, valor_disponivel)
             
       st.write(' ----------------------------------------------------- Resultado da Otimização -----------------------------------------------------')
-      st.write(f'Retorno ótimo: {round(-res.fun)} %')
-      st.write(f'Total de títulos avaliados: {round(len(df))}')
+   
+      try:
+          st.write(f'Retorno ótimo: {round(-res.fun)} %')
+      except Exception as e:
+            st.error('Não foi possível identificar combinações no formato solicitado. Tente novamente.')
+
+      
+      #st.write(f'Retorno ótimo: {round(-res.fun)} %')
+      st.write(f'Total de títulos avaliados: {round(len(df))} ')
 
 
       df_optm = pd.DataFrame(columns=['idx','titulo_perc'])
-      for i, x in enumerate(res.x):
+      try:
+        for i, x in enumerate(res.x):
           if x > 0 :
-              df_optm = df_optm.append({'idx': i, 'titulo_perc': x}, ignore_index=True)
+            df_optm = df_optm.append({'idx': i, 'titulo_perc': x}, ignore_index=True)
+      
+      except Exception as e:
+         st.error('Não foi possível identificar combinações no formato solicitado. Tente novamente.')
       
       # Note: optimized_return needs to be calculated
       # Convert 'idx' to int for the merge operation
