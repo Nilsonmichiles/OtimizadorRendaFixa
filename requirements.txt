@@ -2,3 +2,4 @@ pandas == 1.5.0
 numpy
 scikit-learn
 scipy
+plotly
